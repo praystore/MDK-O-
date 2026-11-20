@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Меню</h1>
+{% for drink in drinks %}
+  <div>
+    <a href="{% url 'menu:drink_detail' drink.pk %}">{{ drink.name }}</a>
+    — {{ drink.category.name }} — {{ drink.price }} ₽ ({{ drink.volume_ml }} мл)
+  </div>
+{% empty %}
+  <p>Пока нет напитков.</p>
+{% endfor %}
+{% endblock %}

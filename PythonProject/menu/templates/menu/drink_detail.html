@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>{{ drink.name }}</h1>
+<p>Категория: {{ drink.category.name }}</p>
+<p>Цена: {{ drink.price }} ₽, объём: {{ drink.volume_ml }} мл</p>
+<p>{{ drink.description }}</p>
+
+<h3>Добавки</h3>
+<ul>
+  {% for t in drink.toppings.all %}
+    <li>{{ t.name }} (+{{ t.price }} ₽)</li>
+  {% empty %}
+    <li>Нет доступных добавок</li>
+  {% endfor %}
+</ul>
+
+{% if drink.recipe %}
+  <h3>Рецепт</h3>
+  <p><b>Ингредиенты:</b> {{ drink.recipe.ingredients }}</p>
+  <p><b>Приготовление:</b> {{ drink.recipe.steps }}</p>
+{% endif %}
+{% endblock %}
